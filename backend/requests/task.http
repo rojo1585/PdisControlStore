@@ -1,0 +1,52 @@
+@api = https://dentist-backend-p.herokuapp.com/dates
+@api2 = https://dentist-backend-p.herokuapp.com/datesbyfecha
+
+@api3 = https://dentist-backend-p.herokuapp.com/dates/user
+
+@f = "2022/11/02"
+##
+
+GET {{api2}}/2022-11-11
+
+
+
+###
+POST {{api3}}
+Content-Type: application/json
+
+{
+    "email": "n@hotmail.com",
+    "password": "12",
+    "rol": "cliente"
+}
+###
+GET {{api}}
+
+###
+GET {{api}}/1
+
+###
+GET {{api2}}/juan
+###
+DELETE {{api}}/11
+
+
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "nombre": "juan",
+    "descripcion": "dolor de patas",
+    "fecha": "25/10/2022"
+}
+
+###
+PUT {{api}}/1
+CONTENT-TYPE: application/json
+
+{
+    "nombre": "pedro",
+    "descripcion": "dolo cabesa",
+    "fecha": "12/02/2022"
+}
