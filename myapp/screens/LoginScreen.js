@@ -62,7 +62,7 @@ const LoginScreen = () => {
 
     }
 
-    const setLoginWhitGoogle = () =>{
+    /*const setLoginWhitGoogle = () =>{
         let provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider)
             .then(result =>{
@@ -71,7 +71,7 @@ const LoginScreen = () => {
             .catch(error => {
                 console.log(error)
             })
-    }
+    }*/
 
     return (
         
@@ -115,14 +115,6 @@ const LoginScreen = () => {
                 style={[styles.button]}>
                     <Text style={styles.buttonText}>
                         Register
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                onPress={setLoginWhitGoogle}
-                style={[styles.buttonColorSingUpGoogle]}>
-                    <Text style={styles.buttonTextGoogle}>
-                        Google
                     </Text>
                 </TouchableOpacity>
             </View>

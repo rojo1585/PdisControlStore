@@ -13,7 +13,7 @@ const DateList = () => {
     const [dates, setDates] = useState([]);
     const [datesByDate, setDatesByDate] = useState([]);
     const [dateToFind,setDateToFind] = useState("");
-    const [isAllDates, setIsAllDates] = useState(true);
+    const [isAllDates, setIsAllDates] = useState(false);
     const [refreshing, setrefreshing ] = useState([false]);
     const [todayDates, setTodayDates] = useState([]);
     const [isTodayDates, setIsTodayDates] = useState(true)
@@ -44,10 +44,8 @@ const DateList = () => {
         if (day.length < 2) 
             day = '0' + day;
     
-       return [year, month, day].join('-');
-       
+        return [year, month, day].join('-');
     }
-     
 
     
 
@@ -110,9 +108,15 @@ const DateList = () => {
         
     })
 
-
+    const selectDates = (tip) => {
+        if(!isAllDates && isTodayDates){
+            return todayDates
+        }else{
+            return dates
+        }
+    }
     return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%',height: '100%'}}>
         <TextInput
             style={styles.input}
             placeholder = 'Fecha de datos'
@@ -123,14 +127,14 @@ const DateList = () => {
         <TouchableOpacity style={styles.findButton} onPress={() => {getSelectedDate()}}>
             <Text style={ styles.textButton }>Buscar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.findButton} onPress={() => {setTodayDates(true)}}>
+        <TouchableOpacity style={styles.findButton} onPress={() => {setIsAllDates(true),setIsTodayDates(false)}}>
             <Text style={ styles.textButton }>Todas</Text>
         </TouchableOpacity>
         </View>
         {
-            !isAllDates && !isTodayDates? (
+            !isAllDates && !isTodayDates ?(
                 <FlatList
-                styles={{width: '100%'}}
+                styles={{width: '100%',height: '100%'}}
                     data={datesByDate}
                     keyExtractor={(item) => item.id_cita + ''}
                     renderItem={renderItemByDate}
@@ -140,10 +144,10 @@ const DateList = () => {
                         />
                     }
                 />
-            ) : (
+            ) : isAllDates && !isTodayDates ? (
                 <FlatList 
             style={{width: '100%'}}
-                data={todayDates}
+                data={dates}
                 keyExtractor={(item) => item.id_cita + ''}
                 renderItem={renderItem}
                 refreshControl={
@@ -152,15 +156,11 @@ const DateList = () => {
                 />
             }
         />
-            )
-        }
-
-        {
-            !isAllDates && isTodayDates ? (
+            ) : (
                 <FlatList
-                style = {{width: '100%'}}
-                    data={dates}
-                    keyExtractor={(item) => item.id_cita+ ''}
+                styles={{with: '100%'}}
+                    data={todayDates}
+                    keyExtractor={(item) => item.id_cita + ''}
                     renderItem={renderItem}
                     refreshControl={
                         <RefreshControl
@@ -168,7 +168,8 @@ const DateList = () => {
                         />
                     }
                 />
-            ) : (<Text></Text>)
+            )
+            
         }
         
     </View>
