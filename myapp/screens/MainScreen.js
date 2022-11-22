@@ -18,7 +18,7 @@ const MainScreen = () => {
   
     const navigation = useNavigation();
 
-    const userDataCharge = (name, value) => setUser({...user, [name]: value})
+    //const userDataCharge = (name, value) => setUser({...user, [name]: value})
     
     const loadUser = async () =>{
       const data = await getUser(auth.currentUser?.email);
@@ -48,20 +48,20 @@ const MainScreen = () => {
     return (
       <Layout>
           <TouchableOpacity style={styles.buttonMakeDate} onPress={() => {navigation.navigate('DateFormScreen')}}>
-            <Text style={styles.textButton}>Make Date</Text>
+            <Text style={styles.textButton}>Nueva cita</Text>
           </TouchableOpacity>
         
           {
             isAdmin ? (
                 <TouchableOpacity style={styles.buttonShowDates} onPress={() => {navigation.navigate('Home')}}>
-                    <Text style={styles.textButton}>Get Dates</Text>
+                    <Text style={styles.textButton}>Citas</Text>
                 </TouchableOpacity>
             ) : (
               <Text></Text>
             )
           }
           <TouchableOpacity style={styles.buttonExit} onPress={getSignOut}>
-            <Text style={styles.textButton}>Exit</Text>
+            <Text style={styles.textButton}>Salir</Text>
           </TouchableOpacity>
       </Layout>
 
