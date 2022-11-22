@@ -4,8 +4,8 @@ dotenv();
 export const config = {
     host: 'localhost',
     user: 'root',
-    password: '123456',
-    database: 'pdisdos'
+    //password: '123456',
+    database: 'dentista'
 };
 /*export const config = {
     host: process.env.DB_HOST || 'bvpdyodrvg5vhdzsonia-mysql.services.clever-cloud.com',
