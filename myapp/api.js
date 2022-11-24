@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/dates'
+const API = 'http://localhost:3000/productos'
 const API2 = 'http://localhost:3000/dates/user'
 const API3 = 'http://localhost:3000/datesbyfecha'
 

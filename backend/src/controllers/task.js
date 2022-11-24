@@ -1,38 +1,41 @@
 import { connect } from "../database"
 
 
-
-export const getDates = async  (req, res) => {
+//nice
+export const getProducts = async  (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query("SELECT * FROM citas");
+    const [rows] = await connection.query("SELECT * FROM productos");
     res.json(rows);
     console.log(rows);
 }
-
-export const getDateByID = async (req, res) => {
+//nice
+export const getProductByID = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query("SELECT * FROM citas WHERE id_cita = ?", [req.params.id]);
+    const [rows] = await connection.query("SELECT * FROM productos WHERE id_producto = ?", [req.params.id]);
     res.json(rows);
 }
 
-export const getDatesByName = async (req, res) =>{
+export const getProductByName = async (req, res) =>{
     const connection = await connect();
-    const [rows] = await connection.query("SELECT * FROM citas WHERE nombre = ?", [req.params.nombre]);
+    const [rows] = await connection.query("SELECT * FROM product WHERE nombre = ?", [req.params.nombre]);
     res.json(rows);
 }
 
-export const getDatesCount = async (req, res) => {
+export const getProductCount = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query("SELECT COUNT(*) FROM citas");
+    const [rows] = await connection.query("SELECT COUNT(*) FROM productos");
     res.json(rows[0]['COUNT(*)']);
 }
 
-export const saveDate = async (req, res) => {
+export const saveProducts = async (req, res) => {
     const connection = await connect();
-    const [results] = await connection.query("INSERT INTO citas (nombre, descripcion, fecha) VALUES (?,?,?)",[
+    const [results] = await connection.query("INSERT INTO productos (id_tienda, nombre, descripcion, cantidad, precio_costo, precio_venta) VALUES (?,?,?,?,?,?)",[
+        req.body.id_tienda,
         req.body.nombre,
         req.body.descripcion,
-        req.body.fecha,
+        req.body.cantidad,
+        req.body.precio_costo,
+        req.body.precio_venta
     ]);
     
     res.json({
@@ -42,16 +45,16 @@ export const saveDate = async (req, res) => {
     
 }
 
-export const deleteDate = async (req, res) => {
+export const deleteProduct = async (req, res) => {
     const connection = await connect();
-    const result = await connection.query("DELETE FROM citas WHERE id_cita = ?", [req.params.id]);
+    const result = await connection.query("DELETE FROM productos WHERE id_producto = ?", [req.params.id]);
     console.log(result)
 
 }
 
-export const updateDate = async (req, res) => {
+export const updateProduct = async (req, res) => {
     const connection = await connect();
-    const [results] = await connection.query("UPDATE citas SET ? WHERE id_cita = ?", [
+    const [results] = await connection.query("UPDATE productos SET ? WHERE id_producto = ?", [
         req.body,
         req.params.id,
     ])

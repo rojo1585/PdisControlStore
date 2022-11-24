@@ -11,15 +11,20 @@ const DateItem = ({ date, handleDelete }) => {
     return (
 
     <View style={ styles.itemContainer }>
-        <TouchableOpacity onPress={ () => navigation.navigate('DateFormScreen', {id: date.id_cita})}>
-            <Text style={styles.imtemsTitle}>{date.nombre}</Text>
+        <TouchableOpacity onPress={ () => navigation.navigate('DateFormScreen', {id: date.id_producto})}>
+            <Text style={styles.imtemsTitle}>nombre {date.nombre}</Text>
             <Text style={styles.imtemsTitle}>{date.descripcion}</Text>
-            <Text style={styles.imtemsTitle}>{date.fecha}</Text>
+            <Text style={styles.imtemsTitle}>{date.cantidad}</Text>
+            <Text style={styles.imtemsTitle}>{date.precio_costo}</Text>
+            <Text style={styles.imtemsTitle}>{date.precio_venta}</Text>
+            <Text style={styles.imtemsTitle}>{date.imagen}</Text>
+            
+            
         </TouchableOpacity>
         
         <TouchableOpacity 
             style={styles.deleteButton}
-            onPress={() => handleDelete(date.id_cita)}
+            onPress={() => handleDelete(date.id_producto)}
         >
             <Text style={styles.deleteTextButton}>Delete</Text>
         </TouchableOpacity>

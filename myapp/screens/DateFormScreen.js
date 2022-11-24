@@ -10,31 +10,35 @@ const DateFormScreen = ({ navigation, route }) => {
 
 
     const [date, setDate] = useState({
-        nombre: '',
-        descripcion: '',
-        fecha:'',
+        id_tienda: ' ',
+        nombre: ' ',
+        descripcion: ' ',
+        cnatidad: ' ',
+        precio_costo: ' ',
+        precio_venta: ' ',
+        Images: ' '
     });
-    const [selectedDate, setSelectedDate] = useState('');
-    const [time, setTime] = useState('');
+    //const [selectedDate, setSelectedDate] = useState('');
+    //const [time, setTime] = useState('');
 
     const [updating, setUpdating] = useState(false);
 
     
     const handleChange = (name, value) => setDate({...date, [name]: value})
 
-    const remplaceCharactersToDate = (obj) =>{
+    /*const remplaceCharactersToDate = (obj) =>{
         const a  = obj.fecha.replace('/','-');
         console.log(a);
         const b = a.replace('/','-');
         return b
-    }
+    }*/
 
     const handleSubmit = async () => {
         try {
             if (!updating) {
-                date.fecha = selectedDate;
-                date.fecha = remplaceCharactersToDate(date);
-                console.log(date.fecha);
+                //date.fecha = selectedDate;
+                //date.fecha = remplaceCharactersToDate(date);
+                //console.log(date.fecha);
                 await saveDate(date);    
             }else{
                 await updateDate(route.params.id, date);
@@ -53,7 +57,7 @@ const DateFormScreen = ({ navigation, route }) => {
             navigation.setOptions({headerTitle: 'Update a date'});
             (async () => {
                 const data = await getDateByID(route.params.id);
-                setDate({ nombre: data[0].nombre, descripcion: data[0].descripcion, fecha: data[0].fecha});
+                setDate({id_tienda: data[0].id_tienda, nombre: data[0].nombre, descripcion: data[0].descripcion, cantidad: data[0].cantidad, precio_costo: data[0].precio_costo, precio_venta: data[0].precio_venta});
             })();
         }       
     }, [])
@@ -61,6 +65,12 @@ const DateFormScreen = ({ navigation, route }) => {
 
     return (
     <Layout>
+        <TextInput style={ styles.input }
+        placeholder='id_tienda'
+        placeholderTextColor='grey'
+        onChangeText={ (text) => handleChange('id_tienda', text) }
+        value={date.id_tienda}
+        />
         <TextInput style={ styles.input }
         placeholder='Nombre'
         placeholderTextColor='grey'
@@ -73,11 +83,25 @@ const DateFormScreen = ({ navigation, route }) => {
         onChangeText={ (text) => handleChange('descripcion', text) }
         value={date.descripcion}
         />
-        <DatePicker
-            mode='calendar'
-            onSelectedChange={date => setSelectedDate(date) }
-            value={date.fecha}
+        <TextInput style={ styles.input } 
+        placeholder='cantidad'
+        placeholderTextColor='grey'
+        onChangeText={ (text) => handleChange('cantidad', text) }
+        value={date.cantidad}
         />
+        <TextInput style={ styles.input } 
+        placeholder='precio_costo'
+        placeholderTextColor='grey'
+        onChangeText={ (text) => handleChange('precio_costo', text) }
+        value={date.precio_costo}
+        />
+        <TextInput style={ styles.input } 
+        placeholder='precio_venta'
+        placeholderTextColor='grey'
+        onChangeText={ (text) => handleChange('precio_venta', text) }
+        value={date.precio_venta}
+        />
+
 
         {
             !updating ? (

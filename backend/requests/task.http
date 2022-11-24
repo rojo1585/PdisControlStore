@@ -1,23 +1,25 @@
-@api = https://dentist-backend-p.herokuapp.com/dates
-@api2 = https://dentist-backend-p.herokuapp.com/datesbyfecha
+@api = http://localhost:3000/productos
+@api2 = http://localhost:3000/datesbyfecha
 
-@api3 = https://dentist-backend-p.herokuapp.com/dates/user
+@api3 = http://localhost:3000/dates/user
 
 @f = "2022/11/02"
 ##
 
-GET {{api2}}/2022-11-11
 
 
 
 ###
-POST {{api3}}
+POST {{api}}
 Content-Type: application/json
 
 {
-    "email": "n@hotmail.com",
-    "password": "12",
-    "rol": "cliente"
+    "id_tienda": 1,
+    "nombre": "pera",
+    "descripcion": "fruta verde",
+    "cantidad": 12,
+    "precio_costo": 10,
+    "precio_venta": 15
 }
 ###
 GET {{api}}
@@ -46,7 +48,10 @@ PUT {{api}}/1
 CONTENT-TYPE: application/json
 
 {
-    "nombre": "pedro",
-    "descripcion": "dolo cabesa",
-    "fecha": "12/02/2022"
+    "id_tienda": 1,
+    "nombre": "mango",
+    "descripcion": "fruta amarilla",
+    "cantidad": 12,
+    "precio_costo": 10,
+    "precio_venta": 15
 }

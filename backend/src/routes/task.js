@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteDate, getDateByID, getDatesCount, getDates, saveDate, updateDate, getDatesByName, getAdminByEmail, saveNewUser, getDateByDate } from "../controllers/task";
+import { deleteProduct, getProductByID, getProductCount, getProducts, saveProducts, updateProduct, getProductByName, getAdminByEmail, saveNewUser, getDateByDate } from "../controllers/task";
 
 
 const router = Router()
@@ -21,7 +21,7 @@ const router = Router()
  */
 
 
-router.get('/dates/byname/:nombre', getDatesByName)
+router.get('/productos/byname/:nombre', getProductByName)
 /**
  * @swagger
  * /dates:
@@ -29,7 +29,7 @@ router.get('/dates/byname/:nombre', getDatesByName)
  *    summary: Get all dates info
  *    tags: [Dates]
  */
-router.get('/dates', getDates)
+router.get('/productos', getProducts)
 /**
  * @swagger
  * /dates:
@@ -37,7 +37,7 @@ router.get('/dates', getDates)
  *    summary: Get dates info by date
  *    tags: [Dates]
  */
-router.get('/datesbyfecha/:fecha', getDateByDate)
+//router.get('/datesbyfecha/:fecha', getDateByDate)
 
 /**
  * @swagger
@@ -56,7 +56,7 @@ router.get('/dates/user/:email', getAdminByEmail)
  *    tags: [Dates]
  */
 
-router.get('/dates/count', getDatesCount)
+router.get('/productos/count', getProductCount)
 
 /**
  * @swagger
@@ -66,7 +66,7 @@ router.get('/dates/count', getDatesCount)
  *    tags: [Dates]
  */
 
-router.get('/dates/:id', getDateByID)
+router.get('/productos/:id', getProductByID)
 
 /**
  * @swagger
@@ -75,7 +75,7 @@ router.get('/dates/:id', getDateByID)
  *    summary: Save new date
  *    tags: [Dates]
  */
-router.post('/dates', saveDate)
+router.post('/productos', saveProducts)
 
 
 
@@ -99,7 +99,7 @@ router.post('/dates/user', saveNewUser)
  *    tags: [Dates]
  */
 
-router.delete('/dates/:id', deleteDate)
+router.delete('/productos/:id', deleteProduct)
 
 /**
  * @swagger
@@ -109,7 +109,7 @@ router.delete('/dates/:id', deleteDate)
  *    tags: [Dates]
  */
 
-router.put('/dates/:id', updateDate)
+router.put('/productos/:id', updateProduct)
 
 
 

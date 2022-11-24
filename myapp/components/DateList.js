@@ -13,16 +13,14 @@ const DateList = () => {
     const [dates, setDates] = useState([]);
     const [datesByDate, setDatesByDate] = useState([]);
     const [dateToFind,setDateToFind] = useState("");
-    const [isAllDates, setIsAllDates] = useState(false);
+    const [isAllDates, setIsAllDates] = useState(true);
     const [refreshing, setrefreshing ] = useState([false]);
-    const [todayDates, setTodayDates] = useState([]);
-    const [isTodayDates, setIsTodayDates] = useState(true)
-
+   
     const isFocused = useIsFocused();
 
     const loadDates = async () => {
         const data = await getDates();
-        getTodayDates(data);
+        //getTodayDates(data);
         setDates(data);
         
     }
@@ -33,7 +31,7 @@ const DateList = () => {
         //setDatesByDate(data);
     }*/
 
-    function formatDate() {
+   /* function formatDate() {
         var d = new Date(),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
@@ -45,12 +43,12 @@ const DateList = () => {
             day = '0' + day;
     
         return [year, month, day].join('-');
-    }
+    }*/
 
     
 
 
-    const getTodayDates = (date) =>{
+    /*const getTodayDates = (date) =>{
         for(let i = 0; i <= todayDates.length; i++){todayDates.pop()}
         const today = formatDate();
         console.log(today)
@@ -62,16 +60,16 @@ const DateList = () => {
         console.log(todayDates);
         console.log(date); 
 
-    }
+    }*/
 
 
     const getSelectedDate = () => {
         for(let i = 0; i <= datesByDate.length; i++){datesByDate.pop();}
         setIsAllDates(false);
         
-        console.log("all" + isAllDates)
-        dates.map((item) => {
-            if (item.fecha == dateToFind) {
+        console.log(dates)
+        dates.map((item,index) => {
+            if (item.nombre == dateToFind) {
                 datesByDate.push(item);
             }
         })
@@ -84,7 +82,7 @@ const DateList = () => {
         //formatDate()
         //getTodayDates();
         //oadDatesByDate();
-    }, [isFocused, isAllDates, isTodayDates]);
+    }, [isFocused, isAllDates]);
 
 
     const handleDelete = async (id) => {
@@ -96,9 +94,9 @@ const DateList = () => {
         return <DateItem date={item} handleDelete={handleDelete}/>
     }
 
-    const renderItemByDate = ({ item }) => {
+    /*const renderItemByDate = ({ item }) => {
         return <DateItem date={item} handleDelete={handleDelete}/>
-    }
+    }*/
 
 
     const refresh = React.useCallback(async () =>{
@@ -108,13 +106,7 @@ const DateList = () => {
         
     })
 
-    const selectDates = (tip) => {
-        if(!isAllDates && isTodayDates){
-            return todayDates
-        }else{
-            return dates
-        }
-    }
+    
     return (
     <View style={{width: '100%',height: '100%'}}>
         <TextInput
@@ -127,24 +119,24 @@ const DateList = () => {
         <TouchableOpacity style={styles.findButton} onPress={() => {getSelectedDate()}}>
             <Text style={ styles.textButton }>Buscar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.findButton} onPress={() => {setIsAllDates(true),setIsTodayDates(false)}}>
+        <TouchableOpacity style={styles.findButton} onPress={() => {setIsAllDates(true)}}>
             <Text style={ styles.textButton }>Todas</Text>
         </TouchableOpacity>
         </View>
         {
-            !isAllDates && !isTodayDates ?(
+            !isAllDates ?(
                 <FlatList
                 styles={{width: '100%',height: '100%'}}
                     data={datesByDate}
                     keyExtractor={(item) => item.id_cita + ''}
-                    renderItem={renderItemByDate}
+                    renderItem={renderItem}
                     refreshControl={
                         <RefreshControl
                             onRefresh={refresh}
                         />
                     }
                 />
-            ) : isAllDates && !isTodayDates ? (
+            ) :  (
                 <FlatList 
             style={{width: '100%'}}
                 data={dates}
@@ -156,19 +148,7 @@ const DateList = () => {
                 />
             }
         />
-            ) : (
-                <FlatList
-                styles={{with: '100%'}}
-                    data={todayDates}
-                    keyExtractor={(item) => item.id_cita + ''}
-                    renderItem={renderItem}
-                    refreshControl={
-                        <RefreshControl
-                            onRefresh={refresh}
-                        />
-                    }
-                />
-            )
+            ) 
             
         }
         
