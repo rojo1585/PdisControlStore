@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteProduct, getProductByID, getProductCount, getProducts, saveProducts, updateProduct, getProductByName, getAdminByEmail, saveNewUser, getDateByDate } from "../controllers/task";
+import {getUserByID ,updateUser, deleteUser, getAllUsers, deleteProduct, getProductByID, getProductCount, getProducts, saveProducts, updateProduct, getProductByName, getAdminByEmail, saveNewUser, getDateByDate } from "../controllers/task";
 
 
 const router = Router()
@@ -47,6 +47,8 @@ router.get('/productos', getProducts)
  */
 
 router.get('/dates/user/:email', getAdminByEmail)
+router.get('/users', getAllUsers);
+
 
 /**
  * @swagger
@@ -100,6 +102,8 @@ router.post('/dates/user', saveNewUser)
  */
 
 router.delete('/productos/:id', deleteProduct)
+router.delete('/users/:id', deleteUser)
+router.get('/users/:id', getUserByID);
 
 /**
  * @swagger
@@ -110,6 +114,7 @@ router.delete('/productos/:id', deleteProduct)
  */
 
 router.put('/productos/:id', updateProduct)
+router.put('/users/:id', updateUser)
 
 
 

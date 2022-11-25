@@ -1,7 +1,7 @@
 @api = http://localhost:3000/productos
 @api2 = http://localhost:3000/datesbyfecha
 
-@api3 = http://localhost:3000/dates/user
+@api3 = http://localhost:3000/users
 
 @f = "2022/11/02"
 ##
@@ -22,7 +22,7 @@ Content-Type: application/json
     "precio_venta": 15
 }
 ###
-GET {{api}}
+GET {{api3}}/70
 
 ###
 GET {{api}}/1
@@ -30,7 +30,7 @@ GET {{api}}/1
 ###
 GET {{api2}}/juan
 ###
-DELETE {{api}}/11
+DELETE {{api3}}/69
 
 
 ###
@@ -44,14 +44,13 @@ Content-Type: application/json
 }
 
 ###
-PUT {{api}}/1
+PUT {{api3}}/74
 CONTENT-TYPE: application/json
 
 {
-    "id_tienda": 1,
-    "nombre": "mango",
-    "descripcion": "fruta amarilla",
-    "cantidad": 12,
-    "precio_costo": 10,
-    "precio_venta": 15
+    "nombre": "felipe",
+    "email": "papa@gmail.com",
+    "rol": "cliente",
+    "direccion": "colima",
+    "tel": 102150
 }

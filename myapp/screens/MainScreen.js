@@ -50,16 +50,15 @@ const MainScreen = () => {
           <TouchableOpacity style={styles.buttonMakeDate} onPress={() => {navigation.navigate('DateFormScreen')}}>
             <Text style={styles.textButton}>Nueva cita</Text>
           </TouchableOpacity>
-        
-          {
-            isAdmin ? (
-                <TouchableOpacity style={styles.buttonShowDates} onPress={() => {navigation.navigate('Home')}}>
-                    <Text style={styles.textButton}>Citas</Text>
-                </TouchableOpacity>
-            ) : (
-              <Text></Text>
-            )
-          }
+
+          <TouchableOpacity style={styles.buttonMakeDate} onPress={() => {navigation.navigate('ClientScreen')}}>
+            <Text style={styles.textButton}>Clientes</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.buttonShowDates} onPress={() => {navigation.navigate('Home')}}>
+            <Text style={styles.textButton}>Productos</Text>
+          </TouchableOpacity>
+          
           <TouchableOpacity style={styles.buttonExit} onPress={getSignOut}>
             <Text style={styles.textButton}>Salir</Text>
           </TouchableOpacity>

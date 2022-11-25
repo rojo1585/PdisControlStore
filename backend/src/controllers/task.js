@@ -69,6 +69,12 @@ export const getAdminByEmail = async (req, res) => {
     console.log(req.body);
     res.json(rows);
 }
+export const getAllUsers = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.query("SELECT * FROM admin");
+    console.log(req.body);
+    res.json(rows);
+}
 
 export const getDateByDate = async (req, res) => {
     const connection = await connect();
@@ -89,4 +95,27 @@ export const saveNewUser = async (req, res) => {
         id: results.insertIdent,
         ...req.body,
     })
+}
+
+export const deleteUser = async (req, res) => {
+    const connection = await connect();
+    const result = await connection.query("DELETE FROM admin WHERE id = ?", [req.params.id]);
+    console.log(result)
+
+}
+
+export const updateUser = async (req, res) => {
+    const connection = await connect();
+    const [results] = await connection.query("UPDATE admin SET ? WHERE id = ?", [
+        req.body,
+        req.params.id,
+    ])
+    res.sendStatus(204);
+}
+
+export const getUserByID = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.query("SELECT * FROM admin WHERE id = ?", [req.params.id]);
+    console.log(req.body);
+    res.json(rows);
 }

@@ -83,7 +83,7 @@ const LoginScreen = () => {
                 <Text style={styles.LoginText}>Inicio de sesión</Text>
             </View>
             <View style={styles.Title}>
-                <Text style={styles.LoginTextWhitMargin}>Rojito.inc</Text>
+                <Text style={styles.LoginTextWhitMargin}>Tiendita rojito</Text>
             </View>
 
             <View style={styles.inputContainer}>

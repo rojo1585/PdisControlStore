@@ -4,37 +4,32 @@ import DatePicker from 'react-native-modern-datepicker';
 
 
 import Layout from '../components/Layout'
-import { saveDate, getDateByID, updateDate } from '../api'
-
-const DateFormScreen = ({ navigation, route }) => {
+import {addNewUser, updateClient , getUserByID} from '../api'
 
 
-    const [date, setDate] = useState({
-        id_tienda: ' ',
+const ClientFormScreen = ({ navigation, route }) => {
+
+
+    const [client, setClient] = useState({
         nombre: ' ',
-        descripcion: ' ',
-        cnatidad: ' ',
-        precio_costo: ' ',
-        precio_venta: ' ',
-        
+        email: ' ',
+        rol: 'cliente',
+        direccion: ' ',
+        tel: ' ',
     });
-
 
     const [updating, setUpdating] = useState(false);
 
     
-    const handleChange = (name, value) => setDate({...date, [name]: value})
-
+    const handleChange = (name, value) => setClient({...client, [name]: value})
 
     const handleSubmit = async () => {
         try {
             if (!updating) {
-
-                await saveDate(date);    
+                await addNewUser(client);    
             }else{
-                await updateDate(route.params.id, date);
+                await updateClient(route.params.id,client);
             }
-
             navigation.navigate("MainScreen")
         } catch(error){
             console.log(error)
@@ -47,50 +42,38 @@ const DateFormScreen = ({ navigation, route }) => {
             setUpdating(true);
             navigation.setOptions({headerTitle: 'Update a date'});
             (async () => {
-                const data = await getDateByID(route.params.id);
-                setDate({id_tienda: data[0].id_tienda, nombre: data[0].nombre, descripcion: data[0].descripcion, cantidad: data[0].cantidad, precio_costo: data[0].precio_costo, precio_venta: data[0].precio_venta});
+                const data = await getUserByID(route.params.id);
+                setClient({nombre: data[0].nombre, email: data[0].email, rol: data[0].rol, direccion: data[0].direccion, tel: data[0].tel});
             })();
-        }       
+        }      
     }, [])
 
 
     return (
     <Layout>
         <TextInput style={ styles.input }
-        placeholder='id tienda'
-        placeholderTextColor='grey'
-        onChangeText={ (text) => handleChange('id_tienda', text) }
-        value={date.id_tienda}
-        />
-        <TextInput style={ styles.input }
-        placeholder='Nombre'
+        placeholder='nombre'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('nombre', text) }
-        value={date.nombre}
+        value={client.nombre}
         />
-        <TextInput style={ styles.input } 
-        placeholder='descripcion'
-        placeholderTextColor='black'
-        onChangeText={ (text) => handleChange('descripcion', text) }
-        value={date.descripcion}
-        />
-        <TextInput style={ styles.input } 
-        placeholder='cantidad'
+        <TextInput style={ styles.input }
+        placeholder='Email'
         placeholderTextColor='grey'
-        onChangeText={ (text) => handleChange('cantidad', text) }
-        value={date.cantidad}
+        onChangeText={ (text) => handleChange('email', text) }
+        value={client.email}
         />
         <TextInput style={ styles.input } 
-        placeholder='precio_costo'
+        placeholder='direccion'
         placeholderTextColor='grey'
-        onChangeText={ (text) => handleChange('precio_costo', text) }
-        value={date.precio_costo}
+        onChangeText={ (text) => handleChange('direccion', text) }
+        value={client.direccion}
         />
         <TextInput style={ styles.input } 
-        placeholder='precio_venta'
+        placeholder='telefono'
         placeholderTextColor='grey'
-        onChangeText={ (text) => handleChange('precio_venta', text) }
-        value={date.precio_venta}
+        onChangeText={ (text) => handleChange('tel', text) }
+        value={client.tel}
         />
 
 
@@ -147,4 +130,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
     },
 })
-export default DateFormScreen
+export default ClientFormScreen

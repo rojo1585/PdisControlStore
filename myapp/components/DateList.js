@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { FlatList, RefreshControl, TextInput, StyleSheet, TouchableOpacity,Text} from 'react-native'
+import { FlatList, RefreshControl, TextInput, StyleSheet, TouchableOpacity,Text, View} from 'react-native'
 import {useIsFocused} from '@react-navigation/native'
 
 import DateItem from './DateItem'
 import { getDates , deleteDate, getDateByDate } from '../api'
 import Layout from './Layout'
-import { View } from 'react-native-web'
+
 
 
 const DateList = () => {
@@ -20,55 +20,16 @@ const DateList = () => {
 
     const loadDates = async () => {
         const data = await getDates();
-        //getTodayDates(data);
         setDates(data);
         
     }
-    /*
-    //continuar con busqueda por fecha
-    const loadDatesByDate = async () =>{
-        const data = await getDateByDate("2022-11-11");
-        //setDatesByDate(data);
-    }*/
-
-   /* function formatDate() {
-        var d = new Date(),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-    
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-    
-        return [year, month, day].join('-');
-    }*/
-
-    
-
-
-    /*const getTodayDates = (date) =>{
-        for(let i = 0; i <= todayDates.length; i++){todayDates.pop()}
-        const today = formatDate();
-        console.log(today)
-        date.map((item) =>{
-            if (item.fecha == today) {
-                todayDates.push(item)
-            }
-        })
-        console.log(todayDates);
-        console.log(date); 
-
-    }*/
-
 
     const getSelectedDate = () => {
         for(let i = 0; i <= datesByDate.length; i++){datesByDate.pop();}
         setIsAllDates(false);
         
         console.log(dates)
-        dates.map((item,index) => {
+        dates.map((item) => {
             if (item.nombre == dateToFind) {
                 datesByDate.push(item);
             }
@@ -79,9 +40,6 @@ const DateList = () => {
     }
     useEffect(() => {
         loadDates();
-        //formatDate()
-        //getTodayDates();
-        //oadDatesByDate();
     }, [isFocused, isAllDates]);
 
 
@@ -94,9 +52,7 @@ const DateList = () => {
         return <DateItem date={item} handleDelete={handleDelete}/>
     }
 
-    /*const renderItemByDate = ({ item }) => {
-        return <DateItem date={item} handleDelete={handleDelete}/>
-    }*/
+
 
 
     const refresh = React.useCallback(async () =>{
@@ -128,7 +84,7 @@ const DateList = () => {
                 <FlatList
                 styles={{width: '100%',height: '100%'}}
                     data={datesByDate}
-                    keyExtractor={(item) => item.id_cita + ''}
+                    keyExtractor={(item) => item.id_producto + ''}
                     renderItem={renderItem}
                     refreshControl={
                         <RefreshControl
@@ -140,7 +96,7 @@ const DateList = () => {
                 <FlatList 
             style={{width: '100%'}}
                 data={dates}
-                keyExtractor={(item) => item.id_cita + ''}
+                keyExtractor={(item) => item.id_producto + ''}
                 renderItem={renderItem}
                 refreshControl={
                 <RefreshControl
