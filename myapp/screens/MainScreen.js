@@ -48,7 +48,7 @@ const MainScreen = () => {
     return (
       <Layout>
           <TouchableOpacity style={styles.buttonMakeDate} onPress={() => {navigation.navigate('DateFormScreen')}}>
-            <Text style={styles.textButton}>Nueva cita</Text>
+            <Text style={styles.textButton}>Agregar Producto</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.buttonMakeDate} onPress={() => {navigation.navigate('ClientScreen')}}>

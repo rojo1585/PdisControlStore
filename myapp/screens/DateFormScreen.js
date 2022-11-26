@@ -56,36 +56,42 @@ const DateFormScreen = ({ navigation, route }) => {
 
     return (
     <Layout>
+        <Text style={styles.textButton}>id tienda</Text>
         <TextInput style={ styles.input }
         placeholder='id tienda'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('id_tienda', text) }
         value={date.id_tienda}
         />
+        <Text style={styles.textButton}>Nombre</Text>
         <TextInput style={ styles.input }
         placeholder='Nombre'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('nombre', text) }
         value={date.nombre}
         />
+        <Text style={styles.textButton}>Descripcion</Text>
         <TextInput style={ styles.input } 
         placeholder='descripcion'
         placeholderTextColor='black'
         onChangeText={ (text) => handleChange('descripcion', text) }
         value={date.descripcion}
         />
+        <Text style={styles.textButton}>Cantidad</Text>
         <TextInput style={ styles.input } 
         placeholder='cantidad'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('cantidad', text) }
         value={date.cantidad}
         />
+        <Text style={styles.textButton}>Costo</Text>
         <TextInput style={ styles.input } 
         placeholder='precio_costo'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('precio_costo', text) }
         value={date.precio_costo}
         />
+        <Text style={styles.textButton}>Precio venta</Text>
         <TextInput style={ styles.input } 
         placeholder='precio_venta'
         placeholderTextColor='grey'

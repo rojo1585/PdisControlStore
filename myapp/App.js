@@ -23,7 +23,7 @@ const App = () =>{
       }}/>
         <Stack.Screen name="Home" component={HomeScreen}
           options={({navigation}) => ({
-            title:'Red Doctor',
+            title:'Red Tiendita',
             headerStyle: {backgroundColor: '#222f3e'}, 
             headerTitleStyle: {color: 'white'},
             headerRight: () => (

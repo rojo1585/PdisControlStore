@@ -51,24 +51,28 @@ const ClientFormScreen = ({ navigation, route }) => {
 
     return (
     <Layout>
+        <Text style={styles.textButton}>Nombre</Text>
         <TextInput style={ styles.input }
         placeholder='nombre'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('nombre', text) }
         value={client.nombre}
         />
+        <Text style={styles.textButton}>Email</Text>
         <TextInput style={ styles.input }
         placeholder='Email'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('email', text) }
         value={client.email}
         />
+        <Text style={styles.textButton}>Direccion</Text>
         <TextInput style={ styles.input } 
         placeholder='direccion'
         placeholderTextColor='grey'
         onChangeText={ (text) => handleChange('direccion', text) }
         value={client.direccion}
         />
+        <Text style={styles.textButton}>Telefono</Text>
         <TextInput style={ styles.input } 
         placeholder='telefono'
         placeholderTextColor='grey'
